@@ -9,18 +9,16 @@ import { SpotifyService } from '../spotify.service';
 })
 export class SearchComponent  {
   query !: string;
-  title = 'first-routed-app';
   obsTrack !: Observable<Object>;
   results: any;
   // faccio iniettare lo spotify service e faccio una ricerca
   constructor(public spotify: SpotifyService) {
-
   }
 
   submit(query: HTMLInputElement): void {
 
     if (!query.value) {
-      return;
+      return; // non esegue il resto della funzione perché se la condizione è vera, esce dalla funzione
     }
     this.query = query.value;
     this.obsTrack = this.spotify.searchTrack(this.query);
